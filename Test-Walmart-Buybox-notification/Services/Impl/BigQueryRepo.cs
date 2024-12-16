@@ -5,8 +5,9 @@ using System.Collections.Concurrent;
 using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
+using Test_Walmart_Buybox_notification.Services;
 
-namespace ShopifyOrderSupplierMapping.Services.Impl
+namespace Test_Walmart_Buybox_notificationg.Services.Impl
 {
     public class BigQueryRepo : IBigQueryRepo
     {

@@ -6,8 +6,6 @@ using Google.Cloud.Logging.Type;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using ShopifyOrderSupplierMapping.Modals;
-using ShopifyOrderSupplierMapping.Services;
-using ShopifyOrderSupplierMapping.Services.Impl;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -16,8 +14,9 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Test_Walmart_Buybox_notification;
+using Test_Walmart_Buybox_notification.Services;
 
-namespace ShopifyOrderSupplierMapping
+namespace Test_Walmart_Buybox_notification
 {
     [FunctionsStartup(typeof(Startup))]
     public class Function : IHttpFunction

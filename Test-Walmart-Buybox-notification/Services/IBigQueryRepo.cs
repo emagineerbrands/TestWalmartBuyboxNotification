@@ -2,7 +2,7 @@
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 
-namespace ShopifyOrderSupplierMapping.Services
+namespace Test_Walmart_Buybox_notification.Services
 {
     public interface IBigQueryRepo
     {

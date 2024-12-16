@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShopifyOrderSupplierMapping.Services
+namespace Test_Walmart_Buybox_notification.Services
 {
     public interface ILoggerService
     {
