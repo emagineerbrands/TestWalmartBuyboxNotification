@@ -110,9 +110,5 @@ namespace ShopifyOrderSupplierMapping
 
         }
 
-        private ConcurrentQueue<BigQueryInsertRow> ParseRequestToBigQueryRows(string requestBody)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
