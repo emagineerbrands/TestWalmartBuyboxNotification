@@ -66,7 +66,7 @@ namespace Test_Walmart_Buybox_notification
                 Console.WriteLine($"requestbody - {requestBody}");
                 await _loggerService.WriteLogEntry($"requestbody - {requestBody}", LogSeverity.Info);
 
-                await Tasks.PushAsync(_WalmartTestQueue, _target, _projectId, _location, requestBody);
+                await Tasks.PushAsync(_WalmartTestQueue, $"{_target}/ProcessPayload", _projectId, _location, requestBody);
 
 
                 //await _supplierMappingService.CustmoreFirstorder(requestBody);
