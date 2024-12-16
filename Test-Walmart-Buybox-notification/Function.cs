@@ -1,3 +1,4 @@
+using Google.Api;
 using Google.Cloud.BigQuery.V2;
 using Google.Cloud.Functions.Framework;
 using Google.Cloud.Functions.Hosting;
@@ -85,29 +86,18 @@ namespace ShopifyOrderSupplierMapping
                         requestBody = await reader.ReadToEndAsync();
                     }
 
-                    // Parse requestBody into BigQueryInsertRow(s)
-                    var bqRows = ParseRequestToBigQueryRows(requestBody);
 
-                    if (bqRows != null && bqRows.Count > 0)
+                    ConcurrentQueue<BigQueryInsertRow> bigQueryInsertRows = new();
+                    var bqRow = new BigQueryInsertRow
                     {
-                        var result = await _bigQueryRepo.InsertRows(
-                            ConfigurationManager.AppSettings["Dataset"],
-                            ConfigurationManager.AppSettings["Test_Walmart_Buybox_notificationTable"],
-                            bqRows);
 
-                        if (result != null)
-                        {
-                            await context.Response.WriteAsync("Order Captured!");
-                        }
-                        else
-                        {
-                            await context.Response.WriteAsync("Failed to insert rows into BigQuery.");
-                        }
-                    }
-                    else
-                    {
-                        await context.Response.WriteAsync("No valid rows to insert.");
-                    }
+                        { "json_data", requestBody },
+
+                    };
+                    bigQueryInsertRows.Enqueue(bqRow);
+
+                    BigQueryInsertResults bigQueryInsertResults = await _bigQueryRepo.InsertRows(ConfigurationManager.AppSettings["Dataset"],
+                            ConfigurationManager.AppSettings["Test_Walmart_Buybox_notificationTable"], bigQueryInsertRows);
                 }
                 catch (Exception ex)
                 {
